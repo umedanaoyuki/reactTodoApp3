@@ -41,8 +41,14 @@
             ]
             );
 
+            //todoから削除したいidを受け取って　そのid以外のものを新しい配列とする
           const handleTodoDeleteClick = (id) => {
-            
+            if (!confirm('Sure?')) {
+              return;
+            }
+            const newTodos = todos.filter((todo) => {
+              return todo.id !== id;
+            });
           };
 
 
