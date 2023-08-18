@@ -22,9 +22,9 @@
           //     props.onDeleteClick(props.todo.id);
           // }
 
-          const handleCheckboxChange = () => {
-            props.onCheckBoxChange(props.todo.id);
-          }
+          // const handleCheckboxChange = () => {
+          //   props.onCheckBoxChange(props.todo.id);
+          // }
 
           return (
           <>
@@ -32,7 +32,7 @@
                   <label>
                     <input type="checkbox" 
                     checked={props.todo.isCompleted}
-                    onChange={handleCheckboxChange}/>
+                    onChange={() => props.onCheckBoxChange(props.todo.id)}/>
                     <span>
                       {props.todo.title}
                     </span>
