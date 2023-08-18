@@ -22,11 +22,17 @@
           //     props.onDeleteClick(props.todo.id);
           // }
 
+          const handleCheckboxChange = () => {
+            props.onCheckBoxChange(props.todo.id);
+          }
+
           return (
           <>
           <li>
                   <label>
-                    <input type="checkbox" />
+                    <input type="checkbox" 
+                    checked={props.todo.isCompleted}
+                    onChange={handleCheckboxChange}/>
                     <span>
                       {props.todo.title}
                     </span>
@@ -48,7 +54,7 @@
 
 
            const handleTodoCheckBoxChange = (id) => {
-              const newTodos = todo.map((todo) => {
+              const newTodos = todos.map((todo) => {
                 return {
                   id: todo.id,
                   title: todo.title,
@@ -79,6 +85,7 @@
                 key={todo.id}
                 todo={todo}
                 onDeleteClick={handleTodoDeleteClick}
+                onCheckBoxChange={handleTodoCheckBoxChange}
                 />
               );
             });
