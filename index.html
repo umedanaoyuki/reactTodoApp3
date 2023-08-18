@@ -46,6 +46,19 @@
             ]
             );
 
+
+           const handleTodoCheckBoxChange = (id) => {
+              const newTodos = todo.map((todo) => {
+                return {
+                  id: todo.id,
+                  title: todo.title,
+                  isCompleted: todo.id === id ? !todo.isCompleted : todo.isCompleted,
+                };
+              });
+              setTodos(newTodos);
+           }
+
+
             //todoから削除したいidを受け取って　そのid以外のものを新しい配列とする
             //受け取るidは削除したいid
           const handleTodoDeleteClick = (id) => {
