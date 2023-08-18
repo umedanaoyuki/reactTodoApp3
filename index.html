@@ -17,6 +17,11 @@
       {
 
         const Todo = (props) => {
+
+          const handleDeleteClick = () => {
+              props.onDeleteClick(props.todo.id);
+          }
+
           return (
           <>
           <li>
@@ -26,7 +31,7 @@
                       {props.todo.title}
                     </span>
                   </label>
-                  <button>Del</button>
+                  <button onClick={handleDeleteClick}>Del</button>
                 </li>
           </>
           );
@@ -47,10 +52,12 @@
             if (!confirm('Sure?')) {
               return;
             }
+
             const newTodos = todos.filter((todo) => {
               //idとtodo.idで違うものをfilterする（returnの中は　条件式）
               return todo.id !== id;
             });
+            setTodos(newTodos);
           };
 
             const todoItems = todos.map((todo) => {
@@ -58,6 +65,7 @@
                 <Todo 
                 key={todo.id}
                 todo={todo}
+                onDeleteClick={handleTodoDeleteClick}
                 />
               );
             });
