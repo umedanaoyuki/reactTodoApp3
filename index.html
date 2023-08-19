@@ -73,6 +73,17 @@
 
           const [todos, setTodos] = React.useState([]);
 
+          //指定したときのみに読み込みを行うこと
+          React.useEffect(() => {
+            let savedToos;
+            if (localStorage.getItem('todos') === null) {
+              savedToos = [];
+            } else {
+              savedToos = JSON.parse(localStorage.getItem('todos'));
+            }
+            setTodos(savedToos);
+          }, []);
+
           const updateTodos = (newTodos) => {
             setTodos(newTodos);
             localStorage.setItem('todos', JSON.stringify(newTodos));
