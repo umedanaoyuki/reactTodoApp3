@@ -127,11 +127,19 @@
               );
             });
 
+            const handlePurge = () => {
+              const newTodos = todos.filter((todo) => {
+                return todo.isCompleted !== true;
+              });
+              setTodos(newTodos);
+            };
+
+
           return (
             <>
               <h1>
                 Todos
-                <button id="purge">Purge</button>
+                <button id="purge" onClick={handlePurge}>Purge</button>
               </h1>
               <ul id="todos">
                 {todoItems}
