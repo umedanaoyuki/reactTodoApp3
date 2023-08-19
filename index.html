@@ -45,16 +45,21 @@
           );
         }
 
-        const Addform = () => {
+        const Addform = (props) => {
 
           const [title, setTitle] = React.useState('');
 
           const handleTextChange = (e) => {
-            setTitle(e.current);
+            setTitle(e.currentTarget.value);
           };
+
+          const handleSubmit = (e) => {
+            e.preventDefault();
+            props.onSubmit(title);
+          }
             
           return (
-            <form id="add-form">
+            <form onSubmit={handleSubmit}>
                 <input
                         type="text"
                         value={title}
@@ -78,11 +83,12 @@
 
           const handleAddFormSubmit = (title) => {
             const newTodos = [...todos];
-            setTodos.push({
+            newTodos.push({
               id: Date.now(),
               title: title,
-              isCompleted: false
+              isCompleted: false,
             });
+            setTodos(newTodos);
           };
 
 
@@ -132,7 +138,8 @@
               <ul id="todos">
                 {todoItems}
               </ul>
-              <Addform />
+              <Addform
+              onSubmit={handleAddFormSubmit}/>
             </>
           );
         };
