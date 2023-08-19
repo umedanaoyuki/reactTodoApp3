@@ -71,13 +71,12 @@
 
         const App = () => {
 
-          const [todos, setTodos] = React.useState(
-            [
-            {id: 0, title: 'aaa', isCompleted: false},
-            {id: 1, title: 'bbb', isCompleted: false},
-            {id: 2, title: 'ccc', isCompleted: true}
-            ]
-            );
+          const [todos, setTodos] = React.useState([]);
+
+          const updateTodos = (newTodos) => {
+            setTodos(newTodos);
+            localStorage.setItem('todos', JSON.stringify(newTodos));
+          };
 
           const handleAddFormSubmit = (title) => {
             const newTodos = [...todos];
@@ -86,7 +85,7 @@
               title: title,
               isCompleted: false,
             });
-            setTodos(newTodos);
+            updateTodos(newTodos);
           };
 
 
@@ -98,7 +97,7 @@
                   isCompleted: todo.id === id ? !todo.isCompleted : todo.isCompleted,
                 };
               });
-              setTodos(newTodos);
+              updateTodos(newTodos);
           }
 
 
@@ -113,7 +112,7 @@
               //idとtodo.idで違うものをfilterする（returnの中は　条件式）
               return todo.id !== id;
             });
-            setTodos(newTodos);
+            updateTodos(newTodos);
           };
 
             const todoItems = todos.map((todo) => {
@@ -136,7 +135,7 @@
               const newTodos = todos.filter((todo) => {
                 return todo.isCompleted !== true;
               });
-              setTodos(newTodos);
+              updateTodos(newTodos);
             };
 
 
