@@ -18,16 +18,6 @@
 
         const Todo = (props) => {
 
-          // const handleDeleteClick = () => {
-          //     props.onDeleteClick(props.todo.id);
-          // }
-
-          // const handleCheckboxChange = () => {
-          //   props.onCheckBoxChange(props.todo.id);
-          // }
-
-          // props.onCheckBoxChange(props.todo.id)
-
           return (
           <>
           <li>
@@ -53,9 +43,16 @@
             setTitle(e.currentTarget.value);
           };
 
+          const inputRef = React.useRef(null);
+
+
+
+
           const handleSubmit = (e) => {
             e.preventDefault();
             props.onSubmit(title);
+            setTitle('');
+            inputRef.current.focus();
           }
             
           return (
@@ -63,7 +60,8 @@
                 <input
                         type="text"
                         value={title}
-                        onChange={handleTextChange}/>
+                        onChange={handleTextChange}
+                        ref={inputRef}/>
                 <button>Add</button>
               </form>
           );
