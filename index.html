@@ -26,6 +26,8 @@
           //   props.onCheckBoxChange(props.todo.id);
           // }
 
+          // props.onCheckBoxChange(props.todo.id)
+
           return (
           <>
           <li>
@@ -48,15 +50,15 @@
           const [title, setTitle] = React.useState('');
 
           const handleTextChange = (e) => {
-            setTitle(e.currentTarget.value);
+            setTitle(e.current);
           };
             
           return (
             <form id="add-form">
-                <input 
-                type="text" 
-                value={title}
-                onChange={handleTextChange}/>
+                <input
+                        type="text"
+                        value={title}
+                        onChange={handleTextChange}/>
                 <button>Add</button>
               </form>
           );
@@ -73,6 +75,15 @@
             {id: 2, title: 'ccc', isCompleted: true}
             ]
             );
+
+          const handleAddFormSubmit = (title) => {
+            const newTodos = [...todos];
+            setTodos.push({
+              id: Date.now(),
+              title: title,
+              isCompleted: false
+            });
+          };
 
 
           const handleTodoCheckBoxChange = (id) => {
